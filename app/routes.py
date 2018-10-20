@@ -5,27 +5,30 @@ from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.urls import url_parse
 
 from app import app, db
-from app.forms import EditProfileForm, LoginForm, RegistrationForm
-from app.models import User
+from app.forms import (CommentForm, EditProfileForm, LoginForm, PostForm,
+                       RegistrationForm)
+from app.models import Comment, Post, User
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    posts = [{
-        'author': {
-            'username': 'John'
-        },
-        'body': 'Beautiful day in Portland!'
-    },
-             {
-                 'author': {
-                     'username': 'Susan'
-                 },
-                 'body': 'The Avengers movie was so cool!'
-             }]
-    return render_template('index.html', title='Home', posts=posts)
+    form = PostForm()
+    comment = CommentForm()
+    if form.validate_on_submit():
+        post = Post(body=form.post.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post is now live!')
+        return redirect(url_for('index'))
+    posts = current_user.followed_posts().all()
+    return render_template(
+        "index.html",
+        title='Home Page',
+        form=form,
+        posts=posts,
+        comment=comment)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -155,3 +158,25 @@ def unfollow(username):
     db.session.commit()
     flash('You are not following {}.'.format(username))
     return redirect(url_for('user', username=username))
+
+
+@app.route('/explore')
+@login_required
+def explore():
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    return render_template('index.html', title='Explore', posts=posts)
+
+
+@app.route('/comment/<id>', methods=['GET', 'POST'])
+@login_required
+def comment(id):
+    post = Post.query.filter_by(id=id).first_or_404()
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = Comment(body=form.comment.data, post=post, author=current_user)
+        db.session.add(comment)
+        db.session.commit()
+        flash('Your comment is now live!')
+        return redirect(url_for('index'))
+    return render_template(
+        'comment.html', title='Comment', form=form, post=post)
