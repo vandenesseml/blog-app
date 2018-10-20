@@ -12,4 +12,8 @@
     </p>
     <p>{{ form.submit() }}</p>
 </form>
-{% endif %} {% for post in posts %} {% include '_post.html' %} {% endfor %} {% endblock %}
+{% endif %} {% if next_url %}
+<a href="{{ next_url }}">Previous posts</a>
+{% endif %} {% for post in posts %} {% include '_post.html' %} {% endfor %} {% if prev_url %}
+<a href="{{ prev_url }}">Newer posts</a>
+{% endif %} {% endblock %}
