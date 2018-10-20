@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block content %}
-<h1>Hi, {{ user.username }}!</h1>
+<h1>Hi, {{ current_user.username }}!</h1>
 {% for post in posts %}
 <div>
     <p>{{ post.author.username }} says:
@@ -7,26 +7,5 @@
     </p>
 </div>
 {% endfor %} {% endblock %}
-
-<html>
-
-<head>
-    {% if title %}
-    <title>{{ title }} - Topics</title>
-    {% else %}
-    <title>Welcome to Microblog</title>
-    {% endif %}
-</head>
-
-<body>
-    <h1>Hi, {{ user.username }}!</h1>
-    {% for post in posts %}
-    <div>
-        <p>{{ post.author.username }} says:
-            <b>{{ post.body }}</b>
-        </p>
-    </div>
-    {% endfor %}
-</body>
 
 </html>
