@@ -1,2 +1,15 @@
- {% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block app_content %} {% if form %} {{ wtf.quick_form(form)
-}} {% endif %} {% endblock %}
+ {% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block app_content %}
+
+<label class>Title</label>
+<div class="title">
+
+    {{ form.title(class_="titleInput")}}
+</div>
+<div class="body">
+    {{ form.title(class_="bodyInput")}}
+</div>
+<div>
+    {{ form.submit(class_="publishSubmit btn-default btn ")}}
+</div>
+
+{% endblock %}

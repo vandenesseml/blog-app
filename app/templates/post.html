@@ -44,8 +44,8 @@
         </tr>
         <tr>
             <td>
-                <div id="addComment" style="display:none">
-                    {{ wtf.quick_form(form) }}
+                <div id="addComment" style="display:none; float:right">
+                    {{ form.comment(class_="form-control textarea.form-control") }} {{ form.submit(class_="commentSubmit btn-default btn")}}
                 </div>
             </td>
         </tr>
