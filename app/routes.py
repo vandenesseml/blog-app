@@ -15,6 +15,7 @@ from app.models import Comment, Post, User
 @login_required
 def index():
     page = request.args.get('page', 1, type=int)
+
     posts = current_user.followed_posts().paginate(
         page, app.config['POSTS_PER_PAGE'], False)
     next_url = url_for('index', page=posts.next_num) \
@@ -48,7 +49,6 @@ def publish():
 def post(id):
     post = Post.query.filter_by(id=id).first()
     form = CommentForm()
-    title = post.title
     if form.validate_on_submit():
         comment = Comment(
             body=form.comment.data, post=post, author=current_user)
