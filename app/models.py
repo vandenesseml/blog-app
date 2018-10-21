@@ -81,9 +81,6 @@ class Post(db.Model):
         comments = comments + 1
         self.number_of_comments = str(comments)
 
-    def get_age(self):
-        time_since = moment(self.timestamp).fromNow()
-
     def __repr__(self):
 
         return '<Post {}>'.format(self.body)
