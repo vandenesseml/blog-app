@@ -9,7 +9,7 @@
             <a href="{{ url_for('user', username=comment.author.username) }}">
                 {{ comment.author.username }}
             </a>
-            {{ comment.timestamp }}
+            {{moment(comment.timestamp).format('LLL') }}
             <br> {{ comment.body }}
 
         </td>

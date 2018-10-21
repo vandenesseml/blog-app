@@ -48,13 +48,15 @@ def publish():
 def post(id):
     post = Post.query.filter_by(id=id).first()
     form = CommentForm()
+    title = post.title
     if form.validate_on_submit():
         comment = Comment(
             body=form.comment.data, post=post, author=current_user)
         db.session.add(comment)
         db.session.commit()
         flash('Your comment is now live!')
-    return render_template("post.html", title='Publish', post=post, form=form)
+        form.comment.data = ''
+    return render_template("post.html", title='Post', post=post, form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])

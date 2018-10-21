@@ -1,16 +1,21 @@
-<table class="table table-hover">
-    <td>
+<table class="table table-hove">
+    <tr>
+        <td valign="bottom !important">
+            {{moment(post.timestamp).fromNow()}}
+        </td>
+        <td>
 
-        <h2>
-            <a style="font: #000000 !important" href="{{ url_for('post', id=post.id) }}">
-                {{post.title}}</a>
-        </h2>
+            <h2>
+                <a style="font: #000000 !important" href="{{ url_for('post', id=post.id) }}">
+                    {{post.title}}</a>
+            </h2>
 
-        <a href="{{ url_for('user', username=post.author.username) }}">
-            <img style="margin:2px !important;" src="{{ post.author.avatar(30) }}" />
-        </a>
-        by
-        <a href="{{ url_for('user', username=post.author.username) }}">
-            {{ post.author.username }}</a>{{ post.timestamp }}
-    </td>
+            <a href="{{ url_for('user', username=post.author.username) }}">
+                <img style="margin:2px !important;" src="{{ post.author.avatar(30) }}" />
+            </a>
+            by
+            <a href="{{ url_for('user', username=post.author.username) }}">
+                {{ post.author.username }}</a> {{moment(post.timestamp).format('LLL') }}
+        </td>
+    </tr>
 </table>

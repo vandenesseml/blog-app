@@ -13,8 +13,6 @@
 
         <tr>
             <td>
-
-
                 <a href="{{ url_for('user', username=post.author.username) }}"></a>
                 <img style="margin:2px !important;" src="{{ post.author.avatar(30) }}" />
                 </a>
@@ -23,7 +21,7 @@
                 <a href="{{ url_for('user', username=post.author.username) }}">
                     {{ post.author.username }}</a>
 
-                {{ post.timestamp }}</td>
+                {{moment(post.timestamp).format('LLL') }}</td>
 
         </tr>
         <tr>
@@ -36,23 +34,23 @@
         </tr>
         <tr>
             <td align="right">
-                <a href="#" onclick="toggle_visibility('addComment');">Comment
-                    <div>
-                        <img width="20px" src="/static/images/comment.png">
-                    </div>
+                <a href="#" onclick="toggle_visibility('addComment');">
+                    <img width="20px" src="/static/images/comment.png"> Comment
                 </a>
             </td>
         </tr>
-
-        {% for comment in post.comments %} {% include '_comment.html' %} {% endfor %}
-        <div id="addComment" style="display:none">
+        <tr>
+            {% for comment in post.comments %} {% include '_comment.html' %} {% endfor %}
+        </tr>
+        <tr>
             <td>
-                {{ wtf.quick_form(form) }}
+                <div id="addComment" style="display:none">
+                    {{ wtf.quick_form(form) }}
+                </div>
             </td>
-        </div>
         </tr>
     </div>
-    <tr>
+
 
 </table>
 {% endblock %}
