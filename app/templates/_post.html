@@ -17,6 +17,7 @@
             <a href="{{ url_for('user', username=post.author.username) }}">
                 {{ post.author.username }}</a>
             <img width="15px" src="/static/images/clock.png"> {{moment(post.timestamp).format('LLL') }}
+            <img width="15px" src="/static/images/comment.png"> {{post.number_of_comments}}
         </td>
     </tr>
 </table>

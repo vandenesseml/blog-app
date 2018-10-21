@@ -36,7 +36,7 @@ def publish():
     form = PostForm()
     if form.validate_on_submit():
         post = Post(
-            body=form.body.data, title=form.title.data, author=current_user)
+            body=form.body.data, title=form.title.data, author=current_user, number_of_comments='0')
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!')
@@ -53,10 +53,15 @@ def post(id):
         comment = Comment(
             body=form.comment.data, post=post, author=current_user)
         db.session.add(comment)
+        post.increment_comments_counter()
         db.session.commit()
         flash('Your comment is now live!')
         form.comment.data = ''
-    return render_template("post.html", title='Post', post=post, form=form)
+    return render_template(
+        "post.html",
+        title='Post',
+        post=post,
+        form=form,)
 
 
 @app.route('/login', methods=['GET', 'POST'])

@@ -20,7 +20,8 @@
                 by
                 <a href="{{ url_for('user', username=post.author.username) }}">
                     {{ post.author.username }}</a>
-                <img width="15px" src="/static/images/clock.png"> {{moment(post.timestamp).format('LLL') }}</td>
+                <img width="15px" src="/static/images/clock.png"> {{moment(post.timestamp).format('LLL') }}
+                <img width="15px" src="/static/images/comment.png"> {{post.number_of_comments}}</td>
 
         </tr>
         <tr>
@@ -43,9 +44,9 @@
         </tr>
         <tr>
             <td>
-                <div id="addComment" style="display:none; float:right">
+                <div id="addComment" class="addComment">
                     <form action="" method="post" novalidate>
-                        {{ form.hidden_tag() }} {{ form.comment(class_="form-control textarea.form-control") }} {{ form.submit(class_="commentSubmit
+                        {{ form.hidden_tag() }} {{ form.comment(class_="commentBox form-control textarea.form-control") }} {{ form.submit(class_="commentSubmit
                         btn-default btn")}}
                     </form>
                 </div>

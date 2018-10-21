@@ -48,3 +48,11 @@
     margin-left: 40px;
     display: block;
 }
+.addComment{
+    width: 100%;
+    display:none; 
+    float:right
+}
+.table{
+    margin-bottom: 0;
+}

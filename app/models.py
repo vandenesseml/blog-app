@@ -74,6 +74,15 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    number_of_comments = db.Column(db.String(20))
+
+    def increment_comments_counter(self):
+        comments = int(self.number_of_comments)
+        comments = comments + 1
+        self.number_of_comments = str(comments)
+
+    def get_age(self):
+        time_since = moment(self.timestamp).fromNow()
 
     def __repr__(self):
 
