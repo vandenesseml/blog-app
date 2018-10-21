@@ -1,0 +1,58 @@
+{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block app_content %}
+<script type="text/javascript">
+    function toggle_visibility(id) {
+        var e = document.getElementById(id);
+        e.style.display = 'block';
+    }
+</script>
+<table class="table table-hover">
+    <div class="row">
+        <h1>
+            {{post.title}}
+        </h1>
+
+        <tr>
+            <td>
+
+
+                <a href="{{ url_for('user', username=post.author.username) }}"></a>
+                <img style="margin:2px !important;" src="{{ post.author.avatar(30) }}" />
+                </a>
+
+                by
+                <a href="{{ url_for('user', username=post.author.username) }}">
+                    {{ post.author.username }}</a>
+
+                {{ post.timestamp }}</td>
+
+        </tr>
+        <tr>
+            <td>
+
+                <body.lead>
+                    {{ post.body }}
+                </body.lead>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                <a href="#" onclick="toggle_visibility('addComment');">Comment
+                    <div>
+                        <img width="20px" src="/static/images/comment.png">
+                    </div>
+                </a>
+            </td>
+        </tr>
+
+        {% for comment in post.comments %} {% include '_comment.html' %} {% endfor %}
+        <div id="addComment" style="display:none">
+            <td>
+                {{ wtf.quick_form(form) }}
+            </td>
+        </div>
+        </tr>
+    </div>
+    <tr>
+
+</table>
+{% endblock %}

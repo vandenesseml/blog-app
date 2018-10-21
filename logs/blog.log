@@ -73,3 +73,7 @@ Traceback (most recent call last):
   File "C:\Users\MaxlV\AppData\Roaming\Python\Python37\site-packages\jinja2\parser.py", line 59, in fail
     raise exc(msg, lineno, self.name, self.filename)
 jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endblock'. You probably made a nesting mistake. Jinja is expecting this tag, but currently looking for 'endif'. The innermost block that needs to be closed is 'if'.
+2018-10-20 15:42:28,534 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:47]
+2018-10-20 15:52:34,039 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:47]
+2018-10-20 16:10:17,943 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:52]
+2018-10-20 16:18:28,309 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:52]

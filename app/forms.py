@@ -51,14 +51,16 @@ class EditProfileForm(FlaskForm):
 
 
 class PostForm(FlaskForm):
-    post = TextAreaField(
+    title = TextAreaField(
+        'Title', validators=[DataRequired(),
+                             Length(min=1, max=500)])
+    body = TextAreaField(
         'Say something', validators=[DataRequired(),
-                                     Length(min=1, max=3000)])
-    submit = SubmitField('Submit')
+                                     Length(min=1, max=50000)])
+    submit = SubmitField('Publish')
 
 
 class CommentForm(FlaskForm):
     comment = TextAreaField(
-        'Leave a Comment!',
-        validators=[DataRequired(), Length(min=1, max=140)])
+        '', validators=[DataRequired(), Length(min=1, max=140)])
     submit = SubmitField('Comment')

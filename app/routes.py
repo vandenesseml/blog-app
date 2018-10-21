@@ -14,13 +14,6 @@ from app.models import Comment, Post, User
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    form = PostForm()
-    if form.validate_on_submit():
-        post = Post(body=form.post.data, author=current_user)
-        db.session.add(post)
-        db.session.commit()
-        flash('Your post is now live!')
-        return redirect(url_for('index'))
     page = request.args.get('page', 1, type=int)
     posts = current_user.followed_posts().paginate(
         page, app.config['POSTS_PER_PAGE'], False)
@@ -30,11 +23,38 @@ def index():
         if posts.has_prev else None
     return render_template(
         "index.html",
-        title='Home Page',
-        form=form,
+        title='Topics',
         posts=posts.items,
         next_url=next_url,
         prev_url=prev_url)
+
+
+@app.route('/publish', methods=['GET', 'POST'])
+@login_required
+def publish():
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(
+            body=form.body.data, title=form.title.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        flash('Your post is now live!')
+        return redirect(url_for('index'))
+    return render_template("publish.html", title='Publish', form=form)
+
+
+@app.route('/post/<id>', methods=['GET', 'POST'])
+@login_required
+def post(id):
+    post = Post.query.filter_by(id=id).first()
+    form = CommentForm()
+    if form.validate_on_submit():
+        comment = Comment(
+            body=form.comment.data, post=post, author=current_user)
+        db.session.add(comment)
+        db.session.commit()
+        flash('Your comment is now live!')
+    return render_template("post.html", title='Publish', post=post, form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -168,20 +188,3 @@ def explore():
         posts=posts.items,
         next_url=next_url,
         prev_url=prev_url)
-
-
-@app.route('/comment/<id>', methods=['GET', 'POST'])
-@login_required
-def comment(id):
-
-    post = Post.query.filter_by(id=id).first_or_404()
-    form = CommentForm()
-    if form.validate_on_submit():
-        comment = Comment(
-            body=form.comment.data, post=post, author=current_user)
-        db.session.add(comment)
-        db.session.commit()
-        flash('Your comment is now live!')
-        return redirect(url_for('index'))
-    return render_template(
-        'comment.html', title='Comment', form=form, post=post)
