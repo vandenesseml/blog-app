@@ -98,11 +98,24 @@ class Comment(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
-    comments = db.relationship('Comment', backref='Comment', lazy='dynamic')
+    replies = db.relationship('Reply', backref='Comment', lazy='dynamic')
 
     def __repr__(self):
 
         return '<Comment {}>'.format(self.body)
+
+
+class Reply(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    comment_id = db.Column(db.Integer, db.ForeignKey('comment.id'))
+
+    def __repr__(self):
+
+        return '<Reply {}>'.format(self.body)
 
 
 @login.user_loader
