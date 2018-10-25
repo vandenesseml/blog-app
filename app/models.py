@@ -74,12 +74,18 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
-    number_of_comments = db.Column(db.String(20))
+    number_of_comments = db.Column(db.Integer)
+    likes = db.Column(db.Integer)
 
     def increment_comments_counter(self):
-        comments = int(self.number_of_comments)
+        comments = self.number_of_comments
         comments = comments + 1
-        self.number_of_comments = str(comments)
+        self.number_of_comments = comments
+
+    def increment_likes(self):
+        likes = self.likes
+        likes = likes + 1
+        self.likes = likes
 
     def __repr__(self):
 
@@ -92,6 +98,7 @@ class Comment(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    comments = db.relationship('Comment', backref='Comment', lazy='dynamic')
 
     def __repr__(self):
 
