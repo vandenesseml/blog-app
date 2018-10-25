@@ -85,3 +85,5 @@ jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endblock'. You p
 2018-10-25 13:26:56,149 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
 2018-10-25 13:30:26,431 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
 2018-10-25 13:30:33,244 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
+2018-10-25 13:34:08,384 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
+2018-10-25 13:34:14,167 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
