@@ -18,24 +18,12 @@
                 {{ comment.author.username }}
             </a>
             {{moment(comment.timestamp).format('LLL') }}
-            <br> {{ comment.body }}
-             {% for reply in comment.replies %} {% include '_replies.html' %} {% endfor %}
+            <br> {{ comment.body }} {% for reply in comment.replies %} {% include '_replies.html' %} {% endfor %}
             <div id="addComment" class="addComment">
                 <form action="" method="post" novalidate>
                     {{ form.hidden_tag() }} {{ form.comment(class_="commentBox form-control textarea.form-control") }} {{ form.submit(class_="commentSubmit
                     btn-default btn")}}
                 </form>
-            </div>
-            <td align="right" id="reply">
-                <a href="#" onclick="toggle_visibility('addComment');">
-                    <img width="20px" src="/static/images/comment.png"> Reply
-                </a>
-            </td>
-            <tr>
-
-
-
-            </tr>
         </td>
     </tr>
 </table>

@@ -16,3 +16,4 @@ class Config(object):
     ADMINS = ['developer982804@gmail.com']
     POSTS_PER_PAGE = 10
     COMMENTS_PER_POST = 5
+    UPLOADED_PHOTOS_DEST = 'static/profile_images/'

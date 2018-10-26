@@ -46,7 +46,7 @@
 }
 .comments {
     margin-left: 40px;
-    display: block;
+    display: inline-block;
 }
 .addComment{
     width: 100%;
@@ -55,4 +55,13 @@
 }
 .table{
     margin-bottom: 0;
+}
+.post {
+    border: 1px;
+    border-style: solid;
+    border-color: #d9d9d9;
+    border-radius: 4px;
+    display: flex;
+    flex-flow: column;
+    height: auto;
 }

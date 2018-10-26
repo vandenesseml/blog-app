@@ -76,6 +76,7 @@ class Post(db.Model):
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
     number_of_comments = db.Column(db.Integer)
     likes = db.Column(db.Integer)
+    tags = db.Column(db.String(500))
 
     def increment_comments_counter(self):
         comments = self.number_of_comments
