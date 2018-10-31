@@ -82,7 +82,7 @@ def post(id):
     if likeForm.validate_on_submit():
         post.increment_likes()
         db.session.commit()
-
+        likeForm.like.data = ''
         flash('Your like is now live!')
     return render_template(
         "post.html",
