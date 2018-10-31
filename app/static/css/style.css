@@ -101,3 +101,7 @@
 .blackLink {
     color: black;
 }
+.elapsedTime {
+    vertical-align: middle !important;
+    width:50px;
+}
