@@ -1,6 +1,8 @@
+import math
 from datetime import datetime
 from hashlib import md5
 
+import pretty
 from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -88,6 +90,19 @@ class Post(db.Model):
     number_of_comments = db.Column(db.Integer)
     likes = db.Column(db.Integer)
     tags = db.Column(db.String(500))
+
+    def elapsedTime(self):
+        elapsedTime = pretty.date(self.timestamp, short=True).split(' ')
+        formattedTime = ''
+        for element in elapsedTime:
+            if element[0].isdigit():
+                formattedTime = element
+                break
+        return str(math.ceil(float(
+            formattedTime[:-1]))) + formattedTime[len(formattedTime) - 1]
+
+    def getSynopsis(self):
+        return self.body[:200] + '...'
 
     def increment_comments_counter(self):
         comments = self.number_of_comments

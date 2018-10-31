@@ -91,8 +91,9 @@
 }
 .commentClick {
     float: right;
-}container {
-    font-family: PT Serif, Serif;
+}
+.container {
+    
 }
 .table>tbody>tr>td {
     border-top: 0px !important;

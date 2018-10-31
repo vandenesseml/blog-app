@@ -8,9 +8,9 @@
             <h1>{{ user.username }}</h1>
             {% if user.about_me %}
             <p>{{ user.about_me }}</p>{% endif %} {% if user.last_seen %}
-            <p>Last seen on: {{ moment(user.last_seen).format('LLL') }}{% endif %}
+            <p>Active: {{ moment(user.last_seen).fromNow() }}{% endif %}
                 <p>
-                    <img width="15px" src="/static/images/post.png"> {{user.number_of_posts}}</p>
+                    Posts: {{user.number_of_posts}}</p>
                 <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
                 {% if user == current_user %}
                 <p>
