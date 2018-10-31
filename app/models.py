@@ -22,6 +22,7 @@ class User(UserMixin, db.Model):
     replies = db.relationship('Reply', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    number_of_posts = db.Column(db.Integer)
     followed = db.relationship(
         'User',
         secondary=followers,
@@ -29,6 +30,14 @@ class User(UserMixin, db.Model):
         secondaryjoin=(followers.c.followed_id == id),
         backref=db.backref('followers', lazy='dynamic'),
         lazy='dynamic')
+
+    def increment_posts(self):
+        posts = self.number_of_posts
+        if posts != None:
+            posts = posts + 1
+        else:
+            posts = 0
+        self.number_of_posts = posts
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -87,7 +96,10 @@ class Post(db.Model):
 
     def increment_likes(self):
         likes = self.likes
-        likes = likes + 1
+        if likes != None:
+            likes = likes + 1
+        else:
+            likes = 0
         self.likes = likes
 
     def __repr__(self):

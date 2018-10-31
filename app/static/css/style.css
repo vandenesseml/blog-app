@@ -6,6 +6,14 @@
     font: inherit; 
     cursor: pointer;
 }
+.likeButton {
+    background:none!important; 
+    color:inherit; 
+    border:none;
+    padding:0!important; 
+    font: inherit; 
+    cursor: pointer;
+}
 .container {
 
     display: flex !important;
@@ -48,6 +56,20 @@
     margin-left: 40px;
     display: inline-block;
 }
+.replies {
+    margin-left: 80px;
+    display: inline-block;
+}
+.replySubmit{
+    margin-top:5px;
+    margin-bottom: 5px;
+    float:right !important;
+}
+.addReply{
+    width: 100%;
+    display:none; 
+    float:right
+}
 .addComment{
     width: 100%;
     display:none; 
@@ -64,4 +86,10 @@
     display: flex;
     flex-flow: column;
     height: auto;
+}
+.replyClick {
+    float: left;
+}
+.commentClick {
+    float: right;
 }

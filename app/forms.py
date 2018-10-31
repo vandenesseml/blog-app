@@ -71,3 +71,7 @@ class ReplyForm(FlaskForm):
         '', validators=[DataRequired(), Length(min=1, max=140)])
     submit = SubmitField('Reply')
     commentId = HiddenField()
+
+
+class LikeForm(FlaskForm):
+    like = SubmitField('Like')
