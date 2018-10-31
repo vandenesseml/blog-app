@@ -14,28 +14,42 @@
             </a>
         </td>
         <td>
-            <a href="{{ url_for('user', username=comment.author.username) }}">
-                {{ comment.author.username }}
-            </a>
-            {{moment(comment.timestamp).format('LLL') }}
-            <br> {{ comment.body }}
+            <table>
+                <tr>
+                    <td>
+                        <a href="{{ url_for('user', username=comment.author.username) }}">
+                            {{ comment.author.username }}
+                        </a>
+                        {{moment(comment.timestamp).format('LLL') }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{ comment.body }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        {% for reply in comment.replies %} {% include '_replies.html' %} {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">
+                        <a class="replyFormAppear" href="#" onclick="toggle_visibility('{{comment.id}}');">
+                            <img width="20px" src="/static/images/reply2.jpg"> Reply
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div id={{comment.id}} class="addReply">
+                            <form action="" method="post" novalidate>
+                                {{ replyForm.csrf_token() }} {{ replyForm.reply(class_="replyBox form-control textarea.form-control") }} {{ replyForm.submit(class_="replySubmit
+                                btn-default btn")}} {{ replyForm.commentId(value = comment.id) }}
+                            </form>
+                        </div>
+                    </td>
+                </tr>
 
-            <tr>
-                {% for reply in comment.replies %} {% include '_replies.html' %} {% endfor %}
-                <td align="right" id="reply">
-                    <a class="replyFormAppear" href="#" onclick="toggle_visibility('{{comment.id}}');">
-                        <img width="20px" src="/static/images/reply2.jpg"> Reply
-                    </a>
-                </td>
-                <div id={{comment.id}} class="addReply">
-                    <form action="" method="post" novalidate>
-                        {{ replyForm.csrf_token() }} {{ replyForm.reply(class_="replyBox form-control textarea.form-control") }} {{ replyForm.submit(class_="replySubmit
-                        btn-default btn")}} {{ replyForm.commentId(value = comment.id) }}
-                    </form>
-                </div>
-
-            </tr>
-
+            </table>
         </td>
     </tr>
 </table>
