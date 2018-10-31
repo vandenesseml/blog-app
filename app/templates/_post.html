@@ -6,19 +6,19 @@
         <td>
 
             <h2>
-                <a style="font: #000000 !important" href="{{ url_for('post', id=post.id) }}">
+                <a class="blackLink" href="{{ url_for( 'post', id=post.id) }} ">
                     {{post.title}}</a>
             </h2>
 
-            <a href="{{ url_for('user', username=post.author.username) }}">
-                <img style="margin:2px !important;" src="{{ post.author.avatar(30) }}" />
+            <a href="{{ url_for( 'user', username=post.author.username) }} ">
+                <img style="margin:2px !important; " src="{{ post.author.avatar(30) }} " />
             </a>
             by
-            <a href="{{ url_for('user', username=post.author.username) }}">
+            <a href="{{ url_for( 'user', username=post.author.username) }} ">
                 {{ post.author.username }}</a>
-            <img width="15px" src="/static/images/clock.png"> {{moment(post.timestamp).format('LLL') }}
-            <img width="15px" src="/static/images/comment.png"> {{post.number_of_comments}}
-            <img width="18px" src="/static/images/heart3.png"> {{post.likes}}
+            <img width="15px " src="/static/images/clock.png "> {{moment(post.timestamp).format('LLL') }}
+            <img width="15px " src="/static/images/comment.png "> {{post.number_of_comments}}
+            <img width="18px " src="/static/images/heart3.png "> {{post.likes}}
         </td>
     </tr>
 </table>
