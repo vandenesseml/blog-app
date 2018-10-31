@@ -95,3 +95,9 @@
 }container {
     font-family: PT Serif, Serif;
 }
+.table>tbody>tr>td {
+    border-top: 0px !important;
+}
+.replyFormAppear {
+    text-align: right;
+}

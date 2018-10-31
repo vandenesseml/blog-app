@@ -19,13 +19,14 @@
             </a>
             {{moment(comment.timestamp).format('LLL') }}
             <br> {{ comment.body }}
-            <td align="right" id="reply">
-                <a href="#" onclick="toggle_visibility('{{comment.id}}');">
-                    <img width="20px" src="/static/images/reply2.jpg"> Reply
-                </a>
-            </td>
+
             <tr>
                 {% for reply in comment.replies %} {% include '_replies.html' %} {% endfor %}
+                <td align="right" id="reply">
+                    <a class="replyFormAppear" href="#" onclick="toggle_visibility('{{comment.id}}');">
+                        <img width="20px" src="/static/images/reply2.jpg"> Reply
+                    </a>
+                </td>
                 <div id={{comment.id}} class="addReply">
                     <form action="" method="post" novalidate>
                         {{ replyForm.csrf_token() }} {{ replyForm.reply(class_="replyBox form-control textarea.form-control") }} {{ replyForm.submit(class_="replySubmit

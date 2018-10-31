@@ -62,13 +62,15 @@ class PostForm(FlaskForm):
 
 class CommentForm(FlaskForm):
     comment = TextAreaField(
-        '', validators=[DataRequired(), Length(min=1, max=140)])
+        '', validators=[DataRequired(),
+                        Length(min=1, max=50000)])
     submit = SubmitField('Comment')
 
 
 class ReplyForm(FlaskForm):
     reply = TextAreaField(
-        '', validators=[DataRequired(), Length(min=1, max=140)])
+        '', validators=[DataRequired(),
+                        Length(min=1, max=50000)])
     submit = SubmitField('Reply')
     commentId = HiddenField()
 
