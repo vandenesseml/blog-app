@@ -67,7 +67,7 @@ def post(id):
         db.session.commit()
         flash('Your comment is now live!')
         commentForm.comment.data = ''
-    if replyForm.validate_on_submit():
+    elif replyForm.validate_on_submit():
         comment = Comment.query.filter_by(id=replyForm.commentId.data).first()
         reply = Reply(
             body=replyForm.reply.data,
@@ -79,7 +79,7 @@ def post(id):
         db.session.commit()
         flash('Your reply is now live!')
         replyForm.reply.data = ''
-    if likeForm.validate_on_submit():
+    elif likeForm.validate_on_submit():
         post.increment_likes()
         db.session.commit()
         likeForm.like.data = ''

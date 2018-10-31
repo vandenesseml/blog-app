@@ -53,7 +53,7 @@
     <td>
         <div id="addComment" class="addComment">
             <form action="" method="post" novalidate>
-                {{ commentForm.hidden_tag() }} {{ commentForm.comment(class_="commentBox form-control textarea.form-control") }} {{ commentForm.submit(class_="commentSubmit
+                {{ commentForm.csrf_token() }} {{ commentForm.comment(class_="commentBox form-control textarea.form-control") }} {{ commentForm.submit(class_="commentSubmit
                 btn-default btn")}}
             </form>
         </div>
