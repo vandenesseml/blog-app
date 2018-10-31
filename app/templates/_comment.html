@@ -1,9 +1,9 @@
 <script type="text/javascript">
-    function toggle_visibility(id) {
-        var e = document.getElementById(id);
-        e.style.display = 'block';
-        var e = document.getElementById("reply");
-        e.style.display = 'none';
+    function toggle_reply(id) {
+        var reply = document.getElementById(id);
+        reply.style.display = 'block';
+
+
     }
 </script>
 <table class="table table-hover ">
@@ -19,23 +19,21 @@
             </a>
             {{moment(comment.timestamp).format('LLL') }}
             <br> {{ comment.body }}
-             {% for reply in comment.replies %} {% include '_replies.html' %} {% endfor %}
-            <div id="addComment" class="addComment">
+            <div id={{comment.id}} class="addComment">
                 <form action="" method="post" novalidate>
-                    {{ form.hidden_tag() }} {{ form.comment(class_="commentBox form-control textarea.form-control") }} {{ form.submit(class_="commentSubmit
-                    btn-default btn")}}
+                    {{ replyForm.csrf_token() }} {{ replyForm.reply(class_="commentBox form-control textarea.form-control") }} {{ replyForm.submit(class_="commentSubmit
+                    btn-default btn")}} {{ replyForm.commentId(value = comment.id) }}
                 </form>
-            </div>
+            </div>{% for reply in comment.replies %} {% include '_replies.html' %} {% endfor %}
             <td align="right" id="reply">
-                <a href="#" onclick="toggle_visibility('addComment');">
-                    <img width="20px" src="/static/images/comment.png"> Reply
+                <a href="#" onclick="toggle_visibility('{{comment.id}}');">
+                    <img width="20px" src="/static/images/reply2.jpg"> Reply
                 </a>
             </td>
+
             <tr>
-
-
-
             </tr>
         </td>
     </tr>
+
 </table>

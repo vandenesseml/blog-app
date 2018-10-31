@@ -19,6 +19,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     comments = db.relationship('Comment', backref='author', lazy='dynamic')
+    replies = db.relationship('Reply', backref='author', lazy='dynamic')
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     followed = db.relationship(
@@ -74,6 +75,7 @@ class Post(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
+    replies = db.relationship('Reply', backref='post', lazy='dynamic')
     number_of_comments = db.Column(db.Integer)
     likes = db.Column(db.Integer)
     tags = db.Column(db.String(500))
@@ -99,7 +101,7 @@ class Comment(db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
-    replies = db.relationship('Reply', backref='Comment', lazy='dynamic')
+    replies = db.relationship('Reply', backref='comment', lazy='dynamic')
 
     def __repr__(self):
 

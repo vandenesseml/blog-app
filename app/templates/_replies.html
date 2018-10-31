@@ -1,29 +1,19 @@
-<script type="text/javascript">
-    function toggle_visibility(id) {
-        var e = document.getElementById(id);
-        e.style.display = 'block';
-        var e = document.getElementById("reply");
-        e.style.display = 'none';
-    }
-</script>
 <table class="table table-hover ">
     <tr>
         <td width="10px">
-            <a class="comments" href="{{ url_for('user', username=comment.author.username) }}">
-                <img style="margin:2px !important;" src="{{ comment.author.avatar(30) }}" />
+            <a class="comments" href="{{ url_for('user', username=reply.author.username) }}">
+                <img style="margin:2px !important;" src="{{ reply.author.avatar(30) }}" />
             </a>
         </td>
         <td>
-            <a href="{{ url_for('user', username=comment.author.username) }}">
-                {{ comment.author.username }}
+            <a href="{{ url_for('user', username=reply.author.username) }}">
+                {{ reply.author.username }}
             </a>
-            {{moment(comment.timestamp).format('LLL') }}
-            <br> {{ comment.body }} {% for reply in comment.replies %} {% include '_replies.html' %} {% endfor %}
-            <div id="addComment" class="addComment">
-                <form action="" method="post" novalidate>
-                    {{ form.hidden_tag() }} {{ form.comment(class_="commentBox form-control textarea.form-control") }} {{ form.submit(class_="commentSubmit
-                    btn-default btn")}}
-                </form>
+            {{moment(reply.timestamp).format('LLL') }}
+            <br> {{ reply.body }}
+
+
         </td>
     </tr>
+
 </table>

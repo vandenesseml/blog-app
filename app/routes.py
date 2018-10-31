@@ -6,8 +6,10 @@ from werkzeug.urls import url_parse
 
 from app import app, db
 from app.forms import (CommentForm, EditProfileForm, LoginForm, PostForm,
-                       RegistrationForm)
-from app.models import Comment, Post, User
+                       RegistrationForm, ReplyForm)
+from app.models import Comment, Post, Reply, User
+
+commentId = 0
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -36,7 +38,10 @@ def publish():
     form = PostForm()
     if form.validate_on_submit():
         post = Post(
-            body=form.body.data, title=form.title.data, author=current_user, number_of_comments='0')
+            body=form.body.data,
+            title=form.title.data,
+            author=current_user,
+            number_of_comments='0')
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!')
@@ -47,21 +52,37 @@ def publish():
 @app.route('/post/<id>', methods=['GET', 'POST'])
 @login_required
 def post(id):
+
     post = Post.query.filter_by(id=id).first()
-    form = CommentForm()
-    if form.validate_on_submit():
+    commentForm = CommentForm()
+    replyForm = ReplyForm()
+    if commentForm.validate_on_submit():
         comment = Comment(
-            body=form.comment.data, post=post, author=current_user)
+            body=commentForm.comment.data, post=post, author=current_user)
         db.session.add(comment)
         post.increment_comments_counter()
         db.session.commit()
         flash('Your comment is now live!')
-        form.comment.data = ''
+        commentForm.comment.data = ''
+    if replyForm.validate_on_submit():
+        comment = Comment.query.filter_by(id=replyForm.commentId.data).first()
+        reply = Reply(
+            body=replyForm.reply.data,
+            comment=comment,
+            author=current_user,
+            post=post)
+        db.session.add(reply)
+        post.increment_comments_counter()
+        db.session.commit()
+        flash('Your reply is now live!')
+        replyForm.reply.data = ''
     return render_template(
         "post.html",
         title='Post',
         post=post,
-        form=form,)
+        commentForm=commentForm,
+        replyForm=replyForm,
+        commentId=commentId)
 
 
 @app.route('/login', methods=['GET', 'POST'])

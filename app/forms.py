@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import (BooleanField, PasswordField, StringField, SubmitField,
-                     TextAreaField)
+from wtforms import (BooleanField, HiddenField, PasswordField, StringField,
+                     SubmitField, TextAreaField)
 from wtforms.validators import (DataRequired, Email, EqualTo, Length,
                                 ValidationError)
 
@@ -64,3 +64,10 @@ class CommentForm(FlaskForm):
     comment = TextAreaField(
         '', validators=[DataRequired(), Length(min=1, max=140)])
     submit = SubmitField('Comment')
+
+
+class ReplyForm(FlaskForm):
+    reply = TextAreaField(
+        '', validators=[DataRequired(), Length(min=1, max=140)])
+    submit = SubmitField('Reply')
+    commentId = HiddenField()

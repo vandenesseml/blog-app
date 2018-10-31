@@ -4,56 +4,52 @@
         var e = document.getElementById(id);
         e.style.display = 'block';
     }
-</script>
+</script> function toggle_visibility(id) { var comment = document.getElementById(id); comment.style.display = 'block'; var reply =
+document.getElementById("reply"); reply.style.display = 'none'; }
 <table class="table table-hover">
-    <div class="row">
-        <h1>
-            {{post.title}}
-        </h1>
+    <h1>
+        {{post.title}}
+    </h1>
 
-        <tr>
-            <td>
-                <a href="{{ url_for('user', username=post.author.username) }}"></a>
-                <img style="margin:2px !important;" src="{{ post.author.avatar(30) }}" />
-                </a>
+    <tr>
+        <td>
+            <a href="{{ url_for('user', username=post.author.username) }}"></a>
+            <img style="margin:2px !important;" src="{{ post.author.avatar(30) }}" />
+            </a>
 
-                by
-                <a href="{{ url_for('user', username=post.author.username) }}">
-                    {{ post.author.username }}</a>
-                <img width="15px" src="/static/images/clock.png"> {{moment(post.timestamp).format('LLL') }}
-                <img width="15px" src="/static/images/comment.png"> {{post.number_of_comments}}</td>
+            by
+            <a href="{{ url_for('user', username=post.author.username) }}">
+                {{ post.author.username }}</a>
+            <img width="15px" src="/static/images/clock.png"> {{moment(post.timestamp).format('LLL') }}
+            <img width="15px" src="/static/images/comment.png"> {{post.number_of_comments}}</td>
 
-        </tr>
-        <tr>
-            <td>
+    </tr>
+    <tr>
+        <td>
+            <body.lead>
+                {{ post.body }}
+            </body.lead>
+        </td>
+    </tr>
+    <tr>
+        <td align="right">
+            <a href="#" onclick="toggle_visibility('addComment');">
+                <img width="20px" src="/static/images/comment.png"> Comment
+            </a>
+        </td>
+    </tr>
+    <tr>
+        {% for comment in post.comments %} {% include '_comment.html' %} {% endfor %}
 
-                <body.lead>
-                    {{ post.body }}
-                </body.lead>
-            </td>
-        </tr>
-        <tr>
-            <td align="right">
-                <a href="#" onclick="toggle_visibility('addComment');">
-                    <img width="20px" src="/static/images/comment.png"> Comment
-                </a>
-            </td>
-        </tr>
-        <tr>
-            {% for comment in post.comments %} {% include '_comment.html' %} {% endfor %}
-        </tr>
-        <tr>
-            <td>
-                <div id="addComment" class="addComment">
-                    <form action="" method="post" novalidate>
-                        {{ form.hidden_tag() }} {{ form.comment(class_="commentBox form-control textarea.form-control") }} {{ form.submit(class_="commentSubmit
-                        btn-default btn")}}
-                    </form>
-                </div>
-            </td>
-        </tr>
-    </div>
-
-
+    </tr>
+    <td>
+        <div id="addComment" class="addComment">
+            <form action="" method="post" novalidate>
+                {{ commentForm.hidden_tag() }} {{ commentForm.comment(class_="commentBox form-control textarea.form-control") }} {{ commentForm.submit(class_="commentSubmit
+                btn-default btn")}}
+            </form>
+        </div>
+    </td>
 </table>
+
 {% endblock %}
