@@ -107,6 +107,23 @@ class Post(db.Model):
     tags = db.Column(db.String(500))
     image_path = db.Column(db.String(5000))
     liked_by = db.relationship('Like', backref='post', lazy='dynamic')
+    views = db.Column(db.Integer)
+
+    def increment_views(self):
+        views = self.views
+        if views != None:
+            views = views + 1
+        else:
+            views = 1
+        self.views = views
+
+    def decrement_views(self):
+        views = self.views
+        if views != None:
+            views = views - 1
+        else:
+            views = 0
+        self.views = views
 
     def elapsedTime(self):
         elapsedTime = pretty.date(self.timestamp, short=True).split(' ')
@@ -123,7 +140,10 @@ class Post(db.Model):
 
     def increment_comments_counter(self):
         comments = self.number_of_comments
-        comments = comments + 1
+        if likes != None:
+            comments = comments + 1
+        else:
+            comments = 1
         self.number_of_comments = comments
 
     def increment_likes(self):
@@ -131,7 +151,7 @@ class Post(db.Model):
         if likes != None:
             likes = likes + 1
         else:
-            likes = 0
+            likes = 1
         self.likes = likes
 
     def decrement_likes(self):

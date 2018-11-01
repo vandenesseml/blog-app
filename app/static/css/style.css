@@ -141,6 +141,7 @@
     width: -webkit-fill-available;
 }
 .profileImage {
+    margin-right: 5px;
     height: 40px;
     width: 40px;
 }
@@ -150,4 +151,7 @@
 }
 .removeUnderline {
     text-decoration: none !important;
+}
+.statImages {
+    margin-bottom: 5px;
 }

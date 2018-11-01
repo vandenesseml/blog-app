@@ -14,7 +14,6 @@ from app.models import Comment, Like, Post, Reply, User
 from config import Config
 
 
-@app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
@@ -66,12 +65,15 @@ def publish():
 def post(id):
 
     post = Post.query.filter_by(id=id).first()
+    post.increment_views()
+    db.session.commit()
     likeForm = LikeForm()
     commentForm = CommentForm()
     replyForm = ReplyForm()
     if commentForm.validate_on_submit():
         comment = Comment(
             body=commentForm.comment.data, post=post, author=current_user)
+        post.decrement_views()
         db.session.add(comment)
         post.increment_comments_counter()
         db.session.commit()
@@ -84,6 +86,7 @@ def post(id):
             comment=comment,
             author=current_user,
             post=post)
+        post.decrement_views()
         db.session.add(reply)
         post.increment_comments_counter()
         db.session.commit()
@@ -96,12 +99,14 @@ def post(id):
             print('no')
             like = Like(author=current_user, post=post)
             post.increment_likes()
+            post.decrement_views()
             db.session.commit()
             likeForm.like.data = ''
             flash('Your like is now live!')
         else:
             post.liked_by.remove(liked)
             post.decrement_likes()
+            post.decrement_views()
             db.session.commit()
             likeForm.like.data = ''
             flash('Your unlike is now live!')
@@ -174,9 +179,9 @@ def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     posts = user.user_posts().order_by(Post.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('explore', page=posts.next_num) \
+    next_url = url_for('latest', page=posts.next_num) \
         if posts.has_next else None
-    prev_url = url_for('explore', page=posts.prev_num) \
+    prev_url = url_for('latest', page=posts.prev_num) \
         if posts.has_prev else None
 
     return render_template(
@@ -254,19 +259,19 @@ def unfollow(username):
     return redirect(url_for('user', username=username))
 
 
-@app.route('/explore')
-@login_required
-def explore():
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/latest')
+def latest():
     page = request.args.get('page', 1, type=int)
     posts = Post.query.order_by(Post.timestamp.desc()).paginate(
         page, app.config['POSTS_PER_PAGE'], False)
-    next_url = url_for('explore', page=posts.next_num) \
+    next_url = url_for('latest', page=posts.next_num) \
         if posts.has_next else None
-    prev_url = url_for('explore', page=posts.prev_num) \
+    prev_url = url_for('latest', page=posts.prev_num) \
         if posts.has_prev else None
     return render_template(
         "index.html",
-        title='Explore',
+        title='Latest',
         posts=posts.items,
         next_url=next_url,
         prev_url=prev_url)

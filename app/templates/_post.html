@@ -19,9 +19,10 @@
                         </a>
                         <a class="removeUnderline" href="{{ url_for( 'user', username=post.author.username) }} ">
                             {{ post.author.username }}</a>
-                        <img width="15px " src="/static/images/clock.png "> {{moment(post.timestamp).format('LLL') }}
-                        <img width="15px " src="/static/images/comment.png "> {{post.number_of_comments}}
-                        <img width="18px " src="/static/images/heart3.png "> {{post.likes}}
+                        <img width="15px " class="statImages" src="/static/images/clock.png "> {{moment(post.timestamp).format('LLL') }}
+                        <img width="20px" class="statImages" src="/static/images/views.png"> {{post.views}}
+                        <img width="15px " style="margin-bottom:2px" src="/static/images/comment.png "> {{post.number_of_comments}}
+                        <img width="18px " class="statImages" src="/static/images/heart3.png "> {{post.likes}}
                     </td>
                 </tr>
                 <tr>

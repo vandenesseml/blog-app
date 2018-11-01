@@ -1,4 +1,4 @@
-{% extends 'bootstrap/base.html' %} {% block title %} {% if title %}{{ title }} - Topics{% else %}Welcome to Topics{% endif
+{% extends 'bootstrap/base.html' %} {% block title %} {% if title %}Topics - {{ title }}{% else %}Welcome to Topics{% endif
 %} {% endblock %} {% block navbar %}
 <link rel=" stylesheet " href="{{ url_for( 'static', filename='css/style.css' ) }} ">
 
@@ -12,14 +12,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url_for('index') }}">Topics</a>
+            <a class="navbar-brand" href="{{ url_for('latest') }}">Topics</a>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="{{ url_for('index') }}">Home</a>
-                    </li>
-                    <li>
-                        <a href="{{ url_for('explore') }}">Explore</a>
                     </li>
                     <li>
                         <a href="{{ url_for('publish') }}">Publish</a>
