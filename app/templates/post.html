@@ -42,9 +42,8 @@
         <td>
             <span class="replyClick">
                 <form action="" method="post" novalidate>
-                    {{ likeForm.csrf_token() }} {% if not post.liked_by.filter_by(user_id=current_user.id).first() %}
-                    <img width="20px" src="/static/images/heart3.png"> {{likeForm.like(class_="likeButton")}} {% else %}
-                    <img width="20px" src="/static/images/hearted.png"> {{likeForm.like(class_="likeButton")}}{% endif %}
+                    {{ likeForm.csrf_token() }} {% if not post.liked_by.filter_by(user_id=current_user.id).first() %} {{likeForm.like(class_="unlikeButton")}}
+                    {% else %} {{likeForm.like(class_="likeButton")}}{% endif %}
                 </form>
             </span>
             <span class="commentClick removeUnderline">

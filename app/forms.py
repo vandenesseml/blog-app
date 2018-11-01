@@ -78,4 +78,4 @@ class ReplyForm(FlaskForm):
 
 
 class LikeForm(FlaskForm):
-    like = SubmitField('Like')
+    like = SubmitField('      Like')

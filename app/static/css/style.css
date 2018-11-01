@@ -7,12 +7,25 @@
     cursor: pointer;
 }
 .likeButton {
-    background:none!important; 
+    width:40ppx;
+    background:url(/static/images/hearted.png) no-repeat center left;; 
     color:inherit; 
     border:none;
     padding:0!important; 
     font: inherit; 
     cursor: pointer;
+    background-size: 21px;
+}
+.unlikeButton {
+    width:40ppx;
+    background:url(/static/images/heart3.png) no-repeat center left;; 
+    color:inherit; 
+    border:none;
+    padding:0!important; 
+    font: inherit; 
+    cursor: pointer;
+    background-size: 21px;
+
 }
 .container {
 
