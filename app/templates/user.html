@@ -1,8 +1,10 @@
  {% extends "base.html" %} {% block app_content %}
-<table class="table table-hover body">
+<table class="table body">
     <tr>
         <td width="256px">
-            <img src="{{ user.avatar(256) }}">
+            {% if user.image_path %}
+            <img src={{user.image_path}} class="img-rounded postImages"> {% else %}
+            <img src="{{ user.avatar(256) }}"> {% endif %}
         </td>
         <td>
             <h1>{{ user.username }}</h1>

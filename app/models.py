@@ -33,6 +33,8 @@ class User(UserMixin, db.Model):
         secondaryjoin=(followers.c.followed_id == id),
         backref=db.backref('followers', lazy='dynamic'),
         lazy='dynamic')
+    def edit_profile_image(self, image_path):
+        self.image_path = image_path
 
     def increment_posts(self):
         posts = self.number_of_posts

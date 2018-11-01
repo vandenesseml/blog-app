@@ -175,9 +175,17 @@ def edit_profile():
     form = EditProfileForm(current_user.username)
     if form.validate_on_submit():
         current_user.username = form.username.data
-        current_user.about_me = form.about_me.datadata
+        current_user.about_me = form.about_me.data
+        photo = request.files['photo']
+        filename = secure_filename(photo.filename)
+        extension = filename.split('.')[1]
+        filename = str(
+            hashlib.md5(filename.split('.')[0].encode()).hexdigest())
+        filename = filename + '.' + extension
+        photo.save(os.path.join(Config.PROFILE_IMAGE_UPLOAD_FOLDER, filename))
+        current_user.image_path=os.path.join(Config.PROFILE_IMAGE_ACCESS_PATH, filename)
         db.session.commit()
-        flash('Your changes have been saved.')
+        flash('Your profile changes have been saved.')
         return redirect(url_for('edit_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
