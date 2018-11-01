@@ -11,9 +11,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td onclick="{{ url_for( 'post', id=post.id) }} ">
                         <a href="{{ url_for( 'user', username=post.author.username) }} ">
-                            <img style="margin:2px !important; " src="{{ post.author.avatar(30) }} " />
+                            <img style="margin:2px !important; " src="{{ post.author.avatar(30) }} ">
                         </a>
                         by
                         <a href="{{ url_for( 'user', username=post.author.username) }} ">
@@ -26,7 +26,9 @@
                 <tr>
                     {% if post.image_path %}
                     <td>
-                        <img src={{post.image_path}} class="img-rounded postImages">
+                        <a class="blackLink" href="{{ url_for( 'post', id=post.id) }} ">
+                            <img src={{post.image_path}} class="img-rounded postImages">
+                        </a>
                     </td>
                 </tr>
                 {% endif %}
