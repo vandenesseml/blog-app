@@ -12,8 +12,10 @@
 
     <tr>
         <td>
-            <a href="{{ url_for('user', username=post.author.username) }}"></a>
-            <img style="margin:2px !important;" src="{{ post.author.avatar(30) }}" />
+            <a href="{{ url_for('user', username=post.author.username) }}">
+                {% if post.author.image_path %}
+                <img width="30px" src={{post.author.image_path}} class="img-circle profileImage"> {% else %}
+                <img src="{{post.author.avatar(30) }}"> {% endif %}
             </a>
 
             by
