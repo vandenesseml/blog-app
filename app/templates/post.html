@@ -25,6 +25,13 @@
 
     </tr>
     <tr>
+        {% if post.image_path %}
+        <td>
+            <img src={{post.image_path}} class="img-rounded postImages">
+        </td>
+    </tr>
+    {% endif %}
+    <tr>
         <td>
             <body.lead>
                 {{ post.body }}

@@ -1,10 +1,7 @@
 <table class="table table-hove">
     <tr>
-        <td id="time" class="elapsedTime">
-            {{post.elapsedTime()}}
-        </td>
         <td>
-            <table>
+            <table class="table">
                 <tr>
                     <td>
                         <h2>
@@ -26,6 +23,13 @@
                         <img width="18px " src="/static/images/heart3.png "> {{post.likes}}
                     </td>
                 </tr>
+                <tr>
+                    {% if post.image_path %}
+                    <td>
+                        <img src={{post.image_path}} class="img-rounded postImages">
+                    </td>
+                </tr>
+                {% endif %}
                 <tr>
                     <td>
                         {{post.getSynopsis()}}

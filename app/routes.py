@@ -1,3 +1,4 @@
+import hashlib
 import os
 from datetime import datetime
 
@@ -6,7 +7,6 @@ from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.urls import url_parse
 from werkzeug.utils import secure_filename
 
-import hash
 from app import app, db
 from app.forms import (CommentForm, EditProfileForm, LikeForm, LoginForm,
                        PostForm, RegistrationForm, ReplyForm)
@@ -39,16 +39,21 @@ def index():
 def publish():
     form = PostForm()
     if form.validate_on_submit():
+        photo = form.photo.data
+        filename = secure_filename(photo.filename)
+        extension = filename.split('.')[1]
+        filename = str(
+            hashlib.md5(filename.split('.')[0].encode()).hexdigest())
+        filename = filename + '.' + extension
+        photo.save(os.path.join(Config.POST_IMAGE_UPLOAD_FOLDER, filename))
         post = Post(
             body=form.body.data,
             title=form.title.data,
             author=current_user,
             number_of_comments='0',
-            likes='0')
+            likes='0',
+            image_path=os.path.join(Config.POST_IMAGE_ACCESS_PATH, filename))
         current_user.increment_posts()
-        photo = form.photo.data
-        filename = secure_filename(f.filename)
-        photo.save(os.path.join(Config.UPLOAD_FOLDER, filename))
         db.session.add(post)
         db.session.commit()
         flash('Your post is now live!')

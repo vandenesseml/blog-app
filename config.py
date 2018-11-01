@@ -9,9 +9,8 @@ class Config(object):
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    UPLOAD_FOLDER = './app/static/uploads/post/'
+    POST_IMAGE_UPLOAD_FOLDER = './app/static/uploads/post/'
     ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-
+    POST_IMAGE_ACCESS_PATH = '/static/uploads/post/'
     POSTS_PER_PAGE = 10
     COMMENTS_PER_POST = 5
-   

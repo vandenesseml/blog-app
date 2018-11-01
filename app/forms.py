@@ -55,7 +55,7 @@ class PostForm(FlaskForm):
         'Title', validators=[DataRequired(),
                              Length(min=1, max=500)])
     body = TextAreaField(
-        'Say something', validators=[DataRequired(),
+        'Post', validators=[DataRequired(),
                                      Length(min=1, max=50000)])
     photo = FileField()
     submit = SubmitField('Publish')
