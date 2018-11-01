@@ -39,7 +39,7 @@ def index():
 def publish():
     form = PostForm()
     if form.validate_on_submit():
-        photo = form.photo.data
+        photo = request.files['photo']
         filename = secure_filename(photo.filename)
         extension = filename.split('.')[1]
         filename = str(
