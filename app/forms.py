@@ -56,8 +56,8 @@ class PostForm(FlaskForm):
                              Length(min=1, max=500)])
     body = TextAreaField(
         'Post', validators=[DataRequired(),
-                                     Length(min=1, max=50000)])
-    photo = FileField()
+                            Length(min=1, max=50000)])
+    photo = FileField(label='Add Image')
     submit = SubmitField('Publish')
 
 
