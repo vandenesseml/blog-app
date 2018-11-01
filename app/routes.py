@@ -145,7 +145,12 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(
+            username=form.username.data,
+            email=form.email.data,
+            first_name=form.first_name.data,
+            last_name=form.last_name.data,
+            full_name=form.first_name.data + ' ' + form.last_name.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
@@ -204,7 +209,7 @@ def edit_profile():
         form.username.data = current_user.username
         form.about_me.data = current_user.about_me
     return render_template(
-        'edit_profile.html', title='Edit Profile', form=form)
+        'user.html', title='Edit Profile', form=form)
 
 
 @app.route('/follow/<username>')

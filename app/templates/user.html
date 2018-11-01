@@ -8,6 +8,7 @@
         </td>
         <td>
             <h1>{{ user.username }}</h1>
+            <p>{{user.full_name}}</p>
             {% if user.about_me %}
             <p>{{ user.about_me }}</p>{% endif %} {% if user.last_seen %}
             <p>Active: {{ moment(user.last_seen).fromNow() }}{% endif %}

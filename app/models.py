@@ -26,6 +26,9 @@ class User(UserMixin, db.Model):
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     number_of_posts = db.Column(db.Integer)
     image_path = db.Column(db.String(5000))
+    first_name = db.Column(db.String(120))
+    last_name = db.Column(db.String(120))
+    full_name = db.Column(db.String(240))
     likes = db.relationship('Like', backref='author', lazy='dynamic')
     followed = db.relationship(
         'User',
