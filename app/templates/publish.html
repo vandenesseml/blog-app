@@ -4,9 +4,9 @@
     {{ form.csrf_token() }} {{ form.title.label }} {{ form.title(class_="titleInput") }} {{ form.body.label }} {{ form.body(class_="bodyInput")
     }}
     <label class="file">{{ form.photo()}}
-
+        <span>Image</span>
     </label>
-    <span>Prost Image</span>
+
     {{ form.submit(class_="commentSubmit btn-default btn")}}
 </form>
 {% endblock %}

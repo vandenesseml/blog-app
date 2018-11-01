@@ -2,7 +2,7 @@
 <table class="table body">
     <tr>
         <td width="256px">
-            {% if user.image_path %}
+            {% if current_user.image_path %}
             <img src={{user.image_path}} class="img-circle  " style="height: 256px; width: 256px;"> {% else %}
             <img src=" {{ user.avatar(256) }} " class="img-circle userTemplateProfileImage "> {% endif %}
         </td>
@@ -17,7 +17,7 @@
                 <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
                 {% if user == current_user %}
                 <p>
-                    <a class="removeUnderline" href="{{ url_for( 'edit_profile') }} ">Edit your profile</a>
+                    <a class="removeUnderline  blackLink" href="{{ url_for( 'edit_profile') }} ">Edit your profile</a>
                 </p>
                 {% elif not current_user.is_following(user) %}
                 <p>
