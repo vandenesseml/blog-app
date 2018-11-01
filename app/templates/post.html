@@ -1,4 +1,9 @@
-{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block app_content %}
+{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block app_content %} {% if scrollToAnchor %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.location.hash = '#{{ scrollToAnchor }}';
+    });
+</script> {% endif %}
 <script type="text/javascript">
     function toggle_visibility(id) {
         var e = document.getElementById(id);
@@ -40,14 +45,14 @@
     </tr>
     <tr>
         <td>
-            <span class="replyClick">
+            <span id="likePost" class="replyClick">
                 <form action="" method="post" novalidate>
                     {{ likeForm.csrf_token() }} {% if not post.liked_by.filter_by(user_id=current_user.id).first() %} {{likeForm.like(class_="unlikeButton")}}
                     {% else %} {{likeForm.like(class_="likeButton")}}{% endif %}
                 </form>
             </span>
             <span class="commentClick removeUnderline">
-                <a class="blackLink removeUnderline" href="#" onclick="toggle_visibility('addComment');">
+                <a class="blackLink removeUnderline" href="#addComment" onclick="toggle_visibility('addComment');">
                     <img width="20px" src="/static/images/comment.png"> Comment
                 </a>
             </span>

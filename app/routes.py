@@ -106,6 +106,14 @@ def post(id):
             likeForm.like.data = ''
             flash('Your unlike is now live!')
             print(post.liked_by.filter_by(user_id=current_user.id).first())
+        return render_template(
+            "post.html",
+            title='Post',
+            post=post,
+            likeForm=likeForm,
+            commentForm=commentForm,
+            replyForm=replyForm,
+            scrollToAnchor='likePost')
     return render_template(
         "post.html",
         title='Post',
