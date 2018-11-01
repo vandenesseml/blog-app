@@ -133,3 +133,7 @@
     height: 40px;
     width: 40px;
 }
+.userTemplateProfileImage{
+    height: 256 !important;
+    width: 256 !important;
+}

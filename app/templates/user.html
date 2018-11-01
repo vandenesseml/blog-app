@@ -3,8 +3,8 @@
     <tr>
         <td width="256px">
             {% if user.image_path %}
-            <img src={{user.image_path}} class="img-rounded postImages"> {% else %}
-            <img src="{{ user.avatar(256) }}"> {% endif %}
+            <img src={{user.image_path}} class="img-circle  " style="height: 256px; width: 256px;"> {% else %}
+            <img src=" {{ user.avatar(256) }} " class="img-circle userTemplateProfileImage "> {% endif %}
         </td>
         <td>
             <h1>{{ user.username }}</h1>
@@ -16,32 +16,32 @@
                 <p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
                 {% if user == current_user %}
                 <p>
-                    <a href="{{ url_for('edit_profile') }}">Edit your profile</a>
+                    <a href="{{ url_for( 'edit_profile') }} ">Edit your profile</a>
                 </p>
                 {% elif not current_user.is_following(user) %}
                 <p>
-                    <a href="{{ url_for('follow', username=user.username) }}">Follow</a>
+                    <a href="{{ url_for( 'follow', username=user.username) }} ">Follow</a>
                 </p>
                 {% else %}
                 <p>
-                    <a href="{{ url_for('unfollow', username=user.username) }}">Unfollow</a>
+                    <a href="{{ url_for( 'unfollow', username=user.username) }} ">Unfollow</a>
                 </p>
                 {% endif %}
         </td>
     </tr>
 </table>
 {% for post in posts %} {% include '_post.html' %} {% endfor %}
-<nav aria-label="...">
-    <ul class="pager">
-        <li class="previous{% if not prev_url %} disabled{% endif %}">
-            <a href="{{ prev_url or '#' }}">
-                <span aria-hidden="true">&larr;</span> Newer posts
+<nav aria-label="... ">
+    <ul class="pager ">
+        <li class="previous{% if not prev_url %} disabled{% endif %} ">
+            <a href="{{ prev_url or '#' }} ">
+                <span aria-hidden="true ">&larr;</span> Newer posts
             </a>
         </li>
-        <li class="next{% if not next_url %} disabled{% endif %}">
-            <a href="{{ next_url or '#' }}">
+        <li class="next{% if not next_url %} disabled{% endif %} ">
+            <a href="{{ next_url or '#' }} ">
                 Older posts
-                <span aria-hidden="true">&rarr;</span>
+                <span aria-hidden="true ">&rarr;</span>
             </a>
         </li>
     </ul>

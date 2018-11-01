@@ -15,7 +15,7 @@
                         <a href="{{ url_for( 'user', username=post.author.username) }} ">
                             {% if post.author.image_path %}
                             <img width="30px" src={{post.author.image_path}} class="img-circle profileImage"> {% else %}
-                            <img src="{{post.author.avatar(30) }}"> {% endif %}
+                            <img src="{{post.author.avatar(30) }}" class="img-circle profileImage"> {% endif %}
                         </a>
                         <a href="{{ url_for( 'user', username=post.author.username) }} ">
                             {{ post.author.username }}</a>

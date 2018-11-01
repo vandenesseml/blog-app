@@ -4,7 +4,7 @@
             <a class="replies" href="{{ url_for('user', username=reply.author.username) }}">
                 {% if post.author.image_path %}
                 <img width="30px" src={{post.author.image_path}} class="img-circle profileImage"> {% else %}
-                <img src="{{post.author.avatar(30) }}"> {% endif %}
+                <img src="{{post.author.avatar(30) }}" class="img-circle profileImage"> {% endif %}
             </a>
         </td>
         <td>
