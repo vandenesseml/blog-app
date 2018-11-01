@@ -9,7 +9,7 @@
 <table class="table ">
     <tr>
         <td width="10px">
-            <a class="comments" href="{{ url_for('user', username=comment.author.username) }}">
+            <a class="comments removeUnderline" href="{{ url_for('user', username=comment.author.username) }}">
                 {% if post.author.image_path %}
                 <img width="30px" src={{post.author.image_path}} class="img-circle profileImage"> {% else %}
                 <img src="{{post.author.avatar(30) }}" class="img-circle profileImage"> {% endif %}
@@ -19,7 +19,7 @@
             <table class="innerTable">
                 <tr>
                     <td>
-                        <a href="{{ url_for('user', username=comment.author.username) }}">
+                        <a class="removeUnderline" href="{{ url_for('user', username=comment.author.username) }}">
                             {{ comment.author.username }}
                         </a>
                         {{moment(comment.timestamp).format('LLL') }}
@@ -35,7 +35,7 @@
                 </tr>
                 <tr>
                     <td align="right">
-                        <a class="replyFormAppear blackLink" href="#" onclick="toggle_visibility('{{comment.id}}');">
+                        <a class="replyFormAppear blackLink removeUnderline" href="#" onclick="toggle_visibility('{{comment.id}}');">
                             <img width="20px" src="/static/images/reply2.jpg"> Reply
                         </a>
                     </td>

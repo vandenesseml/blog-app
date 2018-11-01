@@ -93,9 +93,6 @@
 .commentClick {
     float: right;
 }
-.container {
-    
-}
 .table>tbody>tr>td {
     border-top: 0px !important;
 }
@@ -136,4 +133,7 @@
 .userTemplateProfileImage{
     height: 256 !important;
     width: 256 !important;
+}
+.removeUnderline {
+    text-decoration: none !important;
 }
