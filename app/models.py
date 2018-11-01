@@ -26,6 +26,7 @@ class User(UserMixin, db.Model):
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     number_of_posts = db.Column(db.Integer)
     image_path = db.Column(db.String(5000))
+    likes = db.relationship('Like', backref='author', lazy='dynamic')
     followed = db.relationship(
         'User',
         secondary=followers,
@@ -33,6 +34,7 @@ class User(UserMixin, db.Model):
         secondaryjoin=(followers.c.followed_id == id),
         backref=db.backref('followers', lazy='dynamic'),
         lazy='dynamic')
+
     def edit_profile_image(self, image_path):
         self.image_path = image_path
 
@@ -82,6 +84,13 @@ class User(UserMixin, db.Model):
         return posts
 
 
+class Like(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+
+
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(500))
@@ -94,6 +103,7 @@ class Post(db.Model):
     likes = db.Column(db.Integer)
     tags = db.Column(db.String(500))
     image_path = db.Column(db.String(5000))
+    liked_by = db.relationship('Like', backref='post', lazy='dynamic')
 
     def elapsedTime(self):
         elapsedTime = pretty.date(self.timestamp, short=True).split(' ')
@@ -117,6 +127,14 @@ class Post(db.Model):
         likes = self.likes
         if likes != None:
             likes = likes + 1
+        else:
+            likes = 0
+        self.likes = likes
+
+    def decrement_likes(self):
+        likes = self.likes
+        if likes != None:
+            likes = likes - 1
         else:
             likes = 0
         self.likes = likes

@@ -10,7 +10,7 @@ from werkzeug.utils import secure_filename
 from app import app, db
 from app.forms import (CommentForm, EditProfileForm, LikeForm, LoginForm,
                        PostForm, RegistrationForm, ReplyForm)
-from app.models import Comment, Post, Reply, User
+from app.models import Comment, Like, Post, Reply, User
 from config import Config
 
 
@@ -90,10 +90,22 @@ def post(id):
         flash('Your reply is now live!')
         replyForm.reply.data = ''
     elif likeForm.validate_on_submit():
-        post.increment_likes()
-        db.session.commit()
-        likeForm.like.data = ''
-        flash('Your like is now live!')
+        liked = post.liked_by.filter_by(user_id=current_user.id).first()
+        print(post.liked_by.filter_by(user_id=current_user.id).first())
+        if not liked:
+            print('no')
+            like = Like(author=current_user, post=post)
+            post.increment_likes()
+            db.session.commit()
+            likeForm.like.data = ''
+            flash('Your like is now live!')
+        else:
+            post.liked_by.remove(liked)
+            post.decrement_likes()
+            db.session.commit()
+            likeForm.like.data = ''
+            flash('Your unlike is now live!')
+            print(post.liked_by.filter_by(user_id=current_user.id).first())
     return render_template(
         "post.html",
         title='Post',
@@ -183,7 +195,8 @@ def edit_profile():
             hashlib.md5(filename.split('.')[0].encode()).hexdigest())
         filename = filename + '.' + extension
         photo.save(os.path.join(Config.PROFILE_IMAGE_UPLOAD_FOLDER, filename))
-        current_user.image_path=os.path.join(Config.PROFILE_IMAGE_ACCESS_PATH, filename)
+        current_user.image_path = os.path.join(
+            Config.PROFILE_IMAGE_ACCESS_PATH, filename)
         db.session.commit()
         flash('Your profile changes have been saved.')
         return redirect(url_for('edit_profile'))

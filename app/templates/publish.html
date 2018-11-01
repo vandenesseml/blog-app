@@ -1,11 +1,12 @@
  {% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block app_content %}
+<h1>Create New Post</h1>
 <form action="" method="post" enctype="multipart/form-data">
     {{ form.csrf_token() }} {{ form.title.label }} {{ form.title(class_="titleInput") }} {{ form.body.label }} {{ form.body(class_="bodyInput")
     }}
     <label class="file">{{ form.photo()}}
 
     </label>
-    <span>Upload Image</span>
+    <span>Prost Image</span>
     {{ form.submit(class_="commentSubmit btn-default btn")}}
 </form>
 {% endblock %}
