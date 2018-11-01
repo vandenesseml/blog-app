@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import (BooleanField, HiddenField, PasswordField, StringField,
-                     SubmitField, TextAreaField)
+from wtforms import (BooleanField, FileField, HiddenField, PasswordField,
+                     StringField, SubmitField, TextAreaField)
 from wtforms.validators import (DataRequired, Email, EqualTo, Length,
                                 ValidationError)
 
@@ -57,6 +57,7 @@ class PostForm(FlaskForm):
     body = TextAreaField(
         'Say something', validators=[DataRequired(),
                                      Length(min=1, max=50000)])
+    photo = FileField()
     submit = SubmitField('Publish')
 
 

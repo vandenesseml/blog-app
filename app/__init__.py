@@ -1,7 +1,7 @@
 import logging
 import os
 from logging.handlers import RotatingFileHandler, SMTPHandler
-
+from werkzeug.utils import secure_filename
 from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager

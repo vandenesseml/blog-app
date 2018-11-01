@@ -25,6 +25,7 @@ class User(UserMixin, db.Model):
     about_me = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     number_of_posts = db.Column(db.Integer)
+    image_path = db.Column(db.String(5000))
     followed = db.relationship(
         'User',
         secondary=followers,
@@ -90,6 +91,7 @@ class Post(db.Model):
     number_of_comments = db.Column(db.Integer)
     likes = db.Column(db.Integer)
     tags = db.Column(db.String(500))
+    image_path = db.Column(db.String(5000))
 
     def elapsedTime(self):
         elapsedTime = pretty.date(self.timestamp, short=True).split(' ')
