@@ -126,3 +126,7 @@
   left: 0;
   cursor: pointer;
 }
+.innerTable{
+    margin-bottom: 2px;
+    width: -webkit-fill-available;
+}

@@ -6,11 +6,11 @@
         e.style.display = 'none';
     }
 </script>
-<table class="table table-hover ">
+<table class="innerTable">
     <tr>
-        <td width="10px">
+        <td>
             <a class="comments" href="{{ url_for('user', username=comment.author.username) }}">
-                <img style="margin:2px !important;" src="{{ comment.author.avatar(30) }}" />
+                <img src="{{ comment.author.avatar(30) }}" />
             </a>
         </td>
         <td>
