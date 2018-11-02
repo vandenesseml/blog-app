@@ -81,6 +81,14 @@ def post(id):
         db.session.commit()
         flash('Your comment is now live!')
         commentForm.comment.data = ''
+        return render_template(
+            "post.html",
+            title='Post',
+            post=post,
+            likeForm=likeForm,
+            commentForm=commentForm,
+            replyForm=replyForm,
+            scrollToAnchor=comment.id)
     elif replyForm.validate_on_submit():
         comment = Comment.query.filter_by(id=replyForm.commentId.data).first()
         reply = Reply(
@@ -94,6 +102,14 @@ def post(id):
         db.session.commit()
         flash('Your reply is now live!')
         replyForm.reply.data = ''
+        return render_template(
+            "post.html",
+            title='Post',
+            post=post,
+            likeForm=likeForm,
+            commentForm=commentForm,
+            replyForm=replyForm,
+            scrollToAnchor=reply.id)
     elif likeForm.validate_on_submit():
         liked = post.liked_by.filter_by(user_id=current_user.id).first()
         print(post.liked_by.filter_by(user_id=current_user.id).first())

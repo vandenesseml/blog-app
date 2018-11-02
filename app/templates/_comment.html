@@ -2,11 +2,9 @@
     function toggle_reply(id) {
         var reply = document.getElementById(id);
         reply.style.display = 'block';
-
-
     }
 </script>
-<table class="table ">
+<table id="{{comment.id}}" class="table ">
     <tr>
         <td width="10px">
             <a class="comments removeUnderline" href="{{ url_for('user', username=comment.author.username) }}">
