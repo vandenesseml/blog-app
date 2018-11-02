@@ -1,4 +1,10 @@
-2018-10-20 11:41:15,723 ERROR: Exception on /user/max [GET] [in c:\users\maxlv\appdata\local\programs\python\python37-32\lib\site-packages\flask\app.py:1761]
+2018-10-20 11:10:36,682 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:43]
+2018-10-20 11:10:56,389 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:43]
+2018-10-20 11:11:05,172 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:43]
+2018-10-20 11:11:38,193 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:43]
+2018-10-20 11:36:01,137 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:43]
+2018-10-20 11:40:29,838 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:43]
+2018-10-20 11:40:38,869 ERROR: Exception on /user/max [GET] [in c:\users\maxlv\appdata\local\programs\python\python37-32\lib\site-packages\flask\app.py:1761]
 Traceback (most recent call last):
   File "c:\users\maxlv\appdata\local\programs\python\python37-32\lib\site-packages\flask\app.py", line 2293, in wsgi_app
     response = self.full_dispatch_request()
@@ -32,7 +38,7 @@ Traceback (most recent call last):
     reraise(exc_type, exc_value, tb)
   File "C:\Users\MaxlV\AppData\Roaming\Python\Python37\site-packages\jinja2\_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\templates\user.html", line 33, in template
+  File "C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\templates\user.html", line 34, in template
     <hr> {% for post in posts %} {% include '_post.html' %} {% endfor %} {% endblock %}
   File "C:\Users\MaxlV\AppData\Roaming\Python\Python37\site-packages\jinja2\environment.py", line 497, in _parse
     return Parser(self, source, name, encode_filename(filename)).parse()
@@ -56,14 +62,6 @@ Traceback (most recent call last):
     result = self.subparse(end_tokens)
   File "C:\Users\MaxlV\AppData\Roaming\Python\Python37\site-packages\jinja2\parser.py", line 883, in subparse
     rv = self.parse_statement()
-  File "C:\Users\MaxlV\AppData\Roaming\Python\Python37\site-packages\jinja2\parser.py", line 130, in parse_statement
-    return getattr(self, 'parse_' + self.stream.current.value)()
-  File "C:\Users\MaxlV\AppData\Roaming\Python\Python37\site-packages\jinja2\parser.py", line 223, in parse_if
-    drop_needle=True)
-  File "C:\Users\MaxlV\AppData\Roaming\Python\Python37\site-packages\jinja2\parser.py", line 165, in parse_statements
-    result = self.subparse(end_tokens)
-  File "C:\Users\MaxlV\AppData\Roaming\Python\Python37\site-packages\jinja2\parser.py", line 883, in subparse
-    rv = self.parse_statement()
   File "C:\Users\MaxlV\AppData\Roaming\Python\Python37\site-packages\jinja2\parser.py", line 144, in parse_statement
     self.fail_unknown_tag(token.value, token.lineno)
   File "C:\Users\MaxlV\AppData\Roaming\Python\Python37\site-packages\jinja2\parser.py", line 97, in fail_unknown_tag
@@ -72,31 +70,5 @@ Traceback (most recent call last):
     self.fail(' '.join(message), lineno)
   File "C:\Users\MaxlV\AppData\Roaming\Python\Python37\site-packages\jinja2\parser.py", line 59, in fail
     raise exc(msg, lineno, self.name, self.filename)
-jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endblock'. You probably made a nesting mistake. Jinja is expecting this tag, but currently looking for 'endif'. The innermost block that needs to be closed is 'if'.
-2018-10-20 15:42:28,534 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:47]
-2018-10-20 15:52:34,039 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:47]
-2018-10-20 16:10:17,943 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:52]
-2018-10-20 16:18:28,309 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:52]
-2018-10-21 17:03:52,839 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 13:18:04,683 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 13:18:18,202 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 13:26:25,633 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 13:26:45,782 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 13:26:56,149 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 13:30:26,431 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 13:30:33,244 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 13:34:08,384 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 13:34:14,167 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 13:35:16,730 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 21:22:22,231 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 21:24:21,705 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 21:25:01,754 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 21:25:29,182 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 21:27:29,182 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-10-25 21:35:54,368 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:53]
-2018-11-02 07:07:55,564 INFO: blog startup [in C:\Users\mvandenesse\Documents\blog-app\app\__init__.py:36]
-2018-11-02 07:08:10,861 INFO: blog startup [in C:\Users\mvandenesse\Documents\blog-app\app\__init__.py:36]
-2018-11-02 07:09:27,319 INFO: blog startup [in C:\Users\mvandenesse\Documents\blog-app\app\__init__.py:36]
-2018-11-02 07:09:47,920 INFO: blog startup [in C:\Users\mvandenesse\Documents\blog-app\app\__init__.py:36]
-2018-11-02 07:14:29,023 INFO: blog startup [in C:\Users\mvandenesse\Documents\blog-app\app\__init__.py:36]
-2018-11-02 07:17:43,713 INFO: blog startup [in C:\Users\mvandenesse\Documents\blog-app\app\__init__.py:36]
+jinja2.exceptions.TemplateSyntaxError: Encountered unknown tag 'endblock'. You probably made a nesting mistake. Jinja is expecting this tag, but currently looking for 'elif' or 'else' or 'endif'. The innermost block that needs to be closed is 'if'.
+2018-10-20 11:41:12,402 INFO: blog startup [in C:\Users\MaxlV\OneDrive\Documents\Job Opportunities\Perfect Sense\blog-app\app\__init__.py:43]
