@@ -10,9 +10,9 @@
     <tr>
         <td width="10px">
             <a class="comments removeUnderline" href="{{ url_for('user', username=comment.author.username) }}">
-                {% if post.author.image_path %}
-                <img width="30px" src={{post.author.image_path}} class="img-circle profileImage"> {% else %}
-                <img src="{{post.author.avatar(30) }}" class="img-circle profileImage"> {% endif %}
+                {% if comment.author.image_path %}
+                <img width="30px" src={{comment.author.image_path}} class="img-circle profileImage"> {% else %}
+                <img src="{{comment.author.avatar(30) }}" class="img-circle profileImage"> {% endif %}
             </a>
         </td>
         <td>

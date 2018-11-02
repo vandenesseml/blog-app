@@ -138,7 +138,7 @@ class Post(db.Model):
 
     def increment_comments_counter(self):
         comments = self.number_of_comments
-        if likes != None:
+        if comments != None:
             comments = comments + 1
         else:
             comments = 1

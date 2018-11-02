@@ -2,9 +2,9 @@
     <tr>
         <td width="10px">
             <a class="replies" href="{{ url_for('user', username=reply.author.username) }}">
-                {% if post.author.image_path %}
-                <img width="30px" src={{post.author.image_path}} class="img-circle profileImage"> {% else %}
-                <img src="{{post.author.avatar(30) }}" class="img-circle profileImage"> {% endif %}
+                {% if reply.author.image_path %}
+                <img width="30px" src={{reply.author.image_path}} class="img-circle profileImage"> {% else %}
+                <img src="{{reply.author.avatar(30) }}" class="img-circle profileImage"> {% endif %}
             </a>
         </td>
         <td>
