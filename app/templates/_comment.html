@@ -20,7 +20,7 @@
                 <tr>
                     <td>
                         <a class="removeUnderline" href="{{ url_for('user', username=comment.author.username) }}">
-                            {{ comment.author.username }}
+                            @{{ comment.author.username }}
                         </a>
                         {{moment(comment.timestamp).format('LLL') }}
                     </td>

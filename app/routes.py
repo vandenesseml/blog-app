@@ -51,7 +51,8 @@ def publish():
             author=current_user,
             number_of_comments='0',
             likes='0',
-            summary=form.summary.data, views='0',
+            summary=form.summary.data,
+            views='0',
             image_path=os.path.join(Config.POST_IMAGE_ACCESS_PATH, filename))
         current_user.increment_posts()
         db.session.add(post)
