@@ -33,14 +33,14 @@
                 </tr>
                 <tr>
                     <td align="right">
-                        <a class="replyFormAppear blackLink removeUnderline" href="#{{comment.id}}" onclick="toggle_visibility('{{comment.id}}');">
+                        <a class="replyFormAppear blackLink removeUnderline" href="#{{comment.id}}" onclick="toggle_visibility('reply{{comment.id}}');">
                             <img width="20px" src="/static/images/reply2.jpg"> Reply
                         </a>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div id={{comment.id}} class="addReply">
+                        <div id=reply{{comment.id}} class="addReply">
                             <form action="" method="post" novalidate>
                                 {{ replyForm.csrf_token() }} {{ replyForm.reply(class_="replyBox form-control textarea.form-control") }} {{ replyForm.submit(class_="replySubmit
                                 btn-default btn")}} {{ replyForm.commentId(value = comment.id) }}
