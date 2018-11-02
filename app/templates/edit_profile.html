@@ -1,12 +1,11 @@
-{% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block app_content %}
+ {% extends "base.html" %} {% import 'bootstrap/wtf.html' as wtf %} {% block app_content %}
 <h1>Edit Profile</h1>
 <form action="" method="post" enctype="multipart/form-data">
-    {{ form.csrf_token() }} {{ form.username.label }} {{ form.username(class_="titleInput") }} {{ form.about_me.label }} {{ form.about_me(class_="bodyInput")
-    }}
+    {{ form.csrf_token() }} {{ form.username.label }} {{ form.username(class_="titleInput form-control") }} {{ form.about_me.label
+    }} {{ form.about_me(class_="bodyInput") }}
     <label class="file">{{ form.photo()}}
-
+        <span>Image</span>
     </label>
-    <span>Profile Image</span>
     {{ form.submit(class_="commentSubmit btn-default btn")}}
 </form>
 {% endblock %}

@@ -34,9 +34,8 @@
     height: auto !important;
 }
 .titleInput {
-    margin: 5px;
     width: -webkit-fill-available;
-    height: 25%;
+    margin-bottom: 5px;
     border: 1px;
     border-style: solid;
     border-color: #d9d9d9;
@@ -45,9 +44,6 @@
     resize:none;
 }
 .bodyInput {
-    margin-top:10px;
-    margin-right: 5px;
-    margin-left: 5px;
     width: -webkit-fill-available;
     height: 400px;
     border: 1px;
@@ -119,7 +115,7 @@
 .postImages {
     width: -webkit-fill-available;
 }
-.file{
+.file {
   display:block;
   width: 30px;
   height: 30px;
