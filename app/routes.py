@@ -224,6 +224,7 @@ def edit_profile():
     if form.validate_on_submit():
         current_user.username = form.username.data
         current_user.about_me = form.about_me.data
+        current_user.first_name = 'Jennifer'
         photo = request.files['photo']
         filename = secure_filename(photo.filename)
         extension = filename.split('.')[1]
