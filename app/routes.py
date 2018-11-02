@@ -249,7 +249,10 @@ def follow(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
         flash('User {} not found.'.format(username))
-        return redirect(url_for('index'))
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('latest')
+        return redirect(next_page)
     if user == current_user:
         flash('You cannot follow yourself!')
         return redirect(url_for('user', username=username))
@@ -265,7 +268,10 @@ def unfollow(username):
     user = User.query.filter_by(username=username).first()
     if user is None:
         flash('User {} not found.'.format(username))
-        return redirect(url_for('index'))
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('latest')
+        return redirect(next_page)
     if user == current_user:
         flash('You cannot unfollow yourself!')
         return redirect(url_for('user', username=username))
