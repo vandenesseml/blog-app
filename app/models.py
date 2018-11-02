@@ -97,6 +97,7 @@ class Like(db.Model):
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(500))
+    summary = db.Column(db.String(5000))
     body = db.Column(db.String(50000))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -134,9 +135,6 @@ class Post(db.Model):
                 break
         return str(math.ceil(float(
             formattedTime[:-1]))) + formattedTime[len(formattedTime) - 1]
-
-    def getSynopsis(self):
-        return self.body[:200] + '...'
 
     def increment_comments_counter(self):
         comments = self.number_of_comments

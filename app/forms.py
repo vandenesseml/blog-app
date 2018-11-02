@@ -57,6 +57,9 @@ class PostForm(FlaskForm):
     title = TextAreaField(
         'Title', validators=[DataRequired(),
                              Length(min=1, max=500)])
+    summary = TextAreaField(
+        'Summary', validators=[DataRequired(),
+                               Length(min=1, max=5000)])
     body = TextAreaField(
         'Post', validators=[DataRequired(),
                             Length(min=1, max=50000)])
