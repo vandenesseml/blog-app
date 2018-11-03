@@ -32,7 +32,7 @@
     display: flex !important;
     flex-flow: column !important;
     height: auto !important;
-    width: 50%!important;
+    
 }
 .titleInput {
     width: -webkit-fill-available;

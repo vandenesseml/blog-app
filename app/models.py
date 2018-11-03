@@ -124,16 +124,6 @@ class Post(db.Model):
             views = 0
         self.views = views
 
-    # def elapsedTime(self):
-    #     elapsedTime = pretty.date(self.timestamp, short=True).split(' ')
-    #     formattedTime = ''
-    #     for element in elapsedTime:
-    #         if element[0].isdigit():
-    #             formattedTime = element
-    #             break
-    #     return str(math.ceil(float(
-    #         formattedTime[:-1]))) + formattedTime[len(formattedTime) - 1]
-
     def increment_comments_counter(self):
         comments = self.number_of_comments
         if comments != None:
