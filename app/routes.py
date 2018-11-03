@@ -112,7 +112,6 @@ def post(id):
             scrollToAnchor=reply.id)
     elif likeForm.validate_on_submit():
         liked = post.liked_by.filter_by(user_id=current_user.id).first()
-        print(post.liked_by.filter_by(user_id=current_user.id).first())
         if not liked:
             like = Like(author=current_user, post=post)
             post.increment_likes()
