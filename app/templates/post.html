@@ -10,67 +10,68 @@
         e.style.display = 'block';
     }
 </script>
-<table class="table">
-    <h1>
-        {{post.title}}
-    </h1>
+<div class=content>
+    <table class="table">
+        <h1>
+            {{post.title}}
+        </h1>
 
-    <tr>
-        <td>
-            <a href="{{ url_for('user', username=post.author.username) }}">
-                {% if post.author.image_path %}
-                <img width="30px" src={{post.author.image_path}} class="img-circle profileImage"> {% else %}
-                <img src="{{post.author.avatar(30) }}" class="img-circle profileImage"> {% endif %}
-            </a>
-            <a href="{{ url_for('user', username=post.author.username) }}">
-                @{{ post.author.username }}</a>
-            <img width="15px" class="statImages" src="/static/images/clock.png"> {{moment(post.timestamp).format('LLL') }}
-            <img width="20px" class="statImages" src="/static/images/views.png"> {{post.views}}
-            <img width="15px" style="margin-bottom:2px" src="/static/images/comment.png"> {{post.number_of_comments}}
-            <img width="18px" class="statImages" src="/static/images/heart3.png"> {{post.likes}}</td>
-
-    </tr>
-    <tr>
-        {% if post.image_path %}
-        <td>
-            <img src={{post.image_path}} class="img-rounded postImages">
-        </td>
-    </tr>
-    {% endif %}
-    <tr>
-        <td>
-            <body.lead>
-                {{ post.body }}
-            </body.lead>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <span id="likePost" class="replyClick">
-                <form action="" method="post" novalidate>
-                    {{ likeForm.csrf_token() }} {% if not post.liked_by.filter_by(user_id=current_user.id).first() %} {{likeForm.like(class_="unlikeButton")}}
-                    {% else %} {{likeForm.like(class_="likeButton")}}{% endif %}
-                </form>
-            </span>
-            <span class="commentClick removeUnderline">
-                <a class="blackLink removeUnderline" href="#addComment" onclick="toggle_visibility('addComment');">
-                    <img width="20px" src="/static/images/comment.png"> Comment
+        <tr>
+            <td>
+                <a href="{{ url_for('user', username=post.author.username) }}">
+                    {% if post.author.image_path %}
+                    <img width="30px" src={{post.author.image_path}} class="img-circle profileImage"> {% else %}
+                    <img src="{{post.author.avatar(30) }}" class="img-circle profileImage"> {% endif %}
                 </a>
-            </span>
+                <a href="{{ url_for('user', username=post.author.username) }}">
+                    @{{ post.author.username }}</a>
+                <img width="15px" class="statImages" src="/static/images/clock.png"> {{moment(post.timestamp).format('LLL') }}
+                <img width="20px" class="statImages" src="/static/images/views.png"> {{post.views}}
+                <img width="15px" style="margin-bottom:2px" src="/static/images/comment.png"> {{post.number_of_comments}}
+                <img width="18px" class="statImages" src="/static/images/heart3.png"> {{post.likes}}</td>
+
+        </tr>
+        <tr>
+            {% if post.image_path %}
+            <td>
+                <img src={{post.image_path}} class="img-rounded postImages">
+            </td>
+        </tr>
+        {% endif %}
+        <tr>
+            <td>
+                <body.lead>
+                    {{ post.body }}
+                </body.lead>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <span id="likePost" class="replyClick">
+                    <form action="" method="post" novalidate>
+                        {{ likeForm.csrf_token() }} {% if not post.liked_by.filter_by(user_id=current_user.id).first() %} {{likeForm.like(class_="unlikeButton")}}
+                        {% else %} {{likeForm.like(class_="likeButton")}}{% endif %}
+                    </form>
+                </span>
+                <span class="commentClick removeUnderline">
+                    <a class="blackLink removeUnderline" href="#addComment" onclick="toggle_visibility('addComment');">
+                        <img width="20px" src="/static/images/comment.png"> Comment
+                    </a>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            {% for comment in post.comments %} {% include '_comment.html' %} {% endfor %}
+
+        </tr>
+        <td>
+            <div id="addComment" class="addComment">
+                <form action="" method="post" novalidate>
+                    {{ commentForm.csrf_token() }} {{ commentForm.comment(class_="commentBox form-control textarea.form-control") }} {{ commentForm.submit(class_="commentSubmit
+                    btn-default btn")}}
+                </form>
+            </div>
         </td>
-    </tr>
-    <tr>
-        {% for comment in post.comments %} {% include '_comment.html' %} {% endfor %}
-
-    </tr>
-    <td>
-        <div id="addComment" class="addComment">
-            <form action="" method="post" novalidate>
-                {{ commentForm.csrf_token() }} {{ commentForm.comment(class_="commentBox form-control textarea.form-control") }} {{ commentForm.submit(class_="commentSubmit
-                btn-default btn")}}
-            </form>
-        </div>
-    </td>
-</table>
-
+    </table>
+</div>
 {% endblock %}
