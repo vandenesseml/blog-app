@@ -2,7 +2,7 @@
 <table class="table body">
     <tr>
         <td width="256px">
-            {% if current_user.image_path %}
+            {% if user.image_path %}
             <img src={{user.image_path}} class="img-circle  " style="height: 256px; width: 256px;"> {% else %}
             <img src=" {{ user.avatar(256) }} " class="img-circle userTemplateProfileImage "> {% endif %}
         </td>
