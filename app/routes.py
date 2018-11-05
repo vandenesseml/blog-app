@@ -297,3 +297,5 @@ def latest():
         posts=posts.items,
         next_url=next_url,
         prev_url=prev_url)
+
+
